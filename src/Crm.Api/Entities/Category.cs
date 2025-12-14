@@ -1,5 +1,3 @@
-using System.ComponentModel.DataAnnotations;
-
 namespace Crm.Api.Entities;
 
 public sealed class Category()
