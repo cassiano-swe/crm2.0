@@ -23,7 +23,8 @@ public class Contact(string name)
     public string? Whatsapp { get; init; }
     public string? WorkPhone { get; init; }
 
-    public static Contact CreateContact(string name,
+    public static Contact CreateContact(
+        string name,
         string? cpf,
         string? jobTitle,
         DateTime? birthDate,
@@ -41,7 +42,8 @@ public class Contact(string name)
         string? skype,
         string? twitter,
         string? whatsapp,
-        string? workPhone) =>
+        string? workPhone
+    ) =>
         new(name: name)
         {
             Id = new Guid(),
@@ -62,29 +64,31 @@ public class Contact(string name)
             Skype = skype,
             Twitter = twitter,
             Whatsapp = whatsapp,
-            WorkPhone = workPhone
+            WorkPhone = workPhone,
         };
 
-    public static Contact CreateContact(Guid Id,
-            string name,
-            string? cpf,
-            string? jobTitle,
-            DateTime? birthDate,
-            string? description,
-            Category? category,
-            LeadOrigin? leadOrigin,
-            string? availablePhone,
-            string? email,
-            string? facebook,
-            string? faxPhone,
-            string? instagram,
-            string? linkedin,
-            string? mobilePhone,
-            int? phoneExtension,
-            string? skype,
-            string? twitter,
-            string? whatsapp,
-            string? workPhone)
+    public static Contact CreateContact(
+        Guid Id,
+        string name,
+        string? cpf,
+        string? jobTitle,
+        DateTime? birthDate,
+        string? description,
+        Category? category,
+        LeadOrigin? leadOrigin,
+        string? availablePhone,
+        string? email,
+        string? facebook,
+        string? faxPhone,
+        string? instagram,
+        string? linkedin,
+        string? mobilePhone,
+        int? phoneExtension,
+        string? skype,
+        string? twitter,
+        string? whatsapp,
+        string? workPhone
+    )
     {
         return new(name: name)
         {
@@ -106,7 +110,7 @@ public class Contact(string name)
             Skype = skype,
             Twitter = twitter,
             Whatsapp = whatsapp,
-            WorkPhone = workPhone
+            WorkPhone = workPhone,
         };
     }
 }
