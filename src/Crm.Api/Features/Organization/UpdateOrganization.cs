@@ -73,7 +73,7 @@ public static class UpdateOrganizations
     {
         public void MapEndpoint(IEndpointRouteBuilder app)
         {
-            app.MapPut("api/oganizations", Handler).WithTags("Organizations");
+            app.MapPut("api/organizations", Handler).WithTags("Organizations");
         }
     }
 
