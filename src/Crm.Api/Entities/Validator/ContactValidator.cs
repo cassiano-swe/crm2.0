@@ -2,7 +2,7 @@ using FluentValidation;
 
 namespace Crm.Api.Entities.Validator;
 
-public class ContactValidator:AbstractValidator<Contact>
+public class ContactValidator : AbstractValidator<Contact>
 {
     public ContactValidator()
     {
@@ -10,12 +10,12 @@ public class ContactValidator:AbstractValidator<Contact>
         RuleFor(contact => contact.Cpf)
             .Must(IsValidCpf)
             .When(p => !string.IsNullOrWhiteSpace(p.Cpf));
-        
+
         RuleFor(contact => contact.Email)
             .Must(IsValidEmail)
             .When(contact => !string.IsNullOrWhiteSpace(contact.Email));
     }
-    
+
     private static bool IsValidCpf(string? cpf)
     {
         if (string.IsNullOrWhiteSpace(cpf))
@@ -49,7 +49,7 @@ public class ContactValidator:AbstractValidator<Contact>
 
         return cpf.EndsWith($"{digit1}{digit2}");
     }
-    
+
     private static bool IsValidEmail(string? email)
     {
         if (string.IsNullOrWhiteSpace(email))

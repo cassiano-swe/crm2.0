@@ -2,7 +2,6 @@ using Crm.Api.Database;
 using Crm.Api.EndpointExtensions;
 using Crm.Api.Entities;
 using Crm.Api.Entities.Validator;
-using Microsoft.EntityFrameworkCore;
 
 namespace Crm.Api.Features.Contacts;
 
@@ -28,7 +27,8 @@ public static class UpdateContacts
         string? Skype,
         string? Twitter,
         string? Whatsapp,
-        string? WorkPhone);
+        string? WorkPhone
+    );
 
     private record Response(
         Guid Id,
@@ -61,7 +61,11 @@ public static class UpdateContacts
         }
     }
 
-    private static async Task<IResult> Handler(Request request, Context context, HttpContext httpContext)
+    private static async Task<IResult> Handler(
+        Request request,
+        Context context,
+        HttpContext httpContext
+    )
     {
         var contactForUpdate = Entities.Contact.CreateContact(
             Id: request.Id,
@@ -87,7 +91,8 @@ public static class UpdateContacts
             skype: request.Skype,
             twitter: request.Twitter,
             whatsapp: request.Whatsapp,
-            workPhone: request.WorkPhone);
+            workPhone: request.WorkPhone
+        );
 
         var validator = new ContactValidator();
         var validationResult = await validator.ValidateAsync(contactForUpdate);
@@ -127,6 +132,8 @@ public static class UpdateContacts
                 Skype: contact.Skype,
                 Twitter: contact.Twitter,
                 Whatsapp: contact.Whatsapp,
-                WorkPhone: contact.WorkPhone));
+                WorkPhone: contact.WorkPhone
+            )
+        );
     }
 }

@@ -1,9 +1,8 @@
 using Crm.Api.Database;
 using Crm.Api.EndpointExtensions;
-using Crm.Api.Extensions;
 using Crm.Api.Entities;
 using Crm.Api.Entities.Validator;
-using Microsoft.EntityFrameworkCore;
+using Crm.Api.Extensions;
 
 namespace Crm.Api.Features.Contacts;
 
@@ -28,7 +27,8 @@ public static class CreateContacts
         string? Skype,
         string? Twitter,
         string? Whatsapp,
-        string? WorkPhone);
+        string? WorkPhone
+    );
 
     private record Response(
         Guid Id,
@@ -61,7 +61,11 @@ public static class CreateContacts
         }
     }
 
-    private static async Task<IResult> Handler(Request request, Context context, HttpContext httpContext)
+    private static async Task<IResult> Handler(
+        Request request,
+        Context context,
+        HttpContext httpContext
+    )
     {
         var contact = Entities.Contact.CreateContact(
             name: request.Name,
@@ -86,7 +90,8 @@ public static class CreateContacts
             skype: request.Skype,
             twitter: request.Twitter,
             whatsapp: request.Whatsapp,
-            workPhone: request.WorkPhone);
+            workPhone: request.WorkPhone
+        );
 
         var validator = new ContactValidator();
         var validationResult = await validator.ValidateAsync(contact);
@@ -98,7 +103,8 @@ public static class CreateContacts
 
         await context.SaveChangesAsync();
 
-        return Results.Created($"{httpContext.Request.GetBaseUrl()}/api/contacts/{contact.Id}",
+        return Results.Created(
+            $"{httpContext.Request.GetBaseUrl()}/api/contacts/{contact.Id}",
             new Response(
                 Id: contact.Id,
                 Name: contact.Name,
@@ -119,6 +125,8 @@ public static class CreateContacts
                 Skype: contact.Skype,
                 Twitter: contact.Twitter,
                 Whatsapp: contact.Whatsapp,
-                WorkPhone: contact.WorkPhone));
+                WorkPhone: contact.WorkPhone
+            )
+        );
     }
 }
